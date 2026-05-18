@@ -8,13 +8,15 @@
 
   inputs.unpins-lib.url = "github:unpins/nix-lib";
 
-  # nixpkgs calls the package `gnumake` (the binary is `make`); the fixes in
-  # nix-lib/{native,mingw}/make.nix bridge the name mismatch so the flake
-  # output stays under unpins/make for `unpin make`.
+  # nixpkgs ships GNU make as `gnumake` (the binary is `make`); native build
+  # bridges the name mismatch here so the consumer-facing repo stays at
+  # `unpins/make`. Windows mingw quirk (one extra -Wno-error=format-security)
+  # still lives in `nix-lib/mingw/make.nix`.
   outputs = { self, unpins-lib }:
     unpins-lib.lib.mkStandaloneFlake {
       inherit self;
       name = "make";
       windows = true;
+      build = pkgs: pkgs.pkgsStatic.gnumake;
     };
 }
