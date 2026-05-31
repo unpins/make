@@ -10,11 +10,14 @@
 
   # nixpkgs ships GNU make as `gnumake` (the binary is `make`); native build
   # bridges the name mismatch here so the consumer-facing repo stays at
-  # `unpins/make`.
+  # `unpins/make`. `pkgsAttr = "gnumake"` points the Windows man graft at the
+  # right nixpkgs attr — without it the graft looks up a nonexistent `make`
+  # attr, resolves to null, and make.exe ships no embedded man.
   outputs = { self, unpins-lib }:
     unpins-lib.lib.mkStandaloneFlake {
       inherit self;
       name = "make";
+      pkgsAttr = "gnumake";
       build = pkgs: pkgs.pkgsStatic.gnumake;
       # Mingw quirk: src/job.c:378 calls `O (fatal, NILF, error_string)` (a
       # fatal-error macro whose argument is a *runtime* string), which trips

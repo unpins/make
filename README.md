@@ -38,6 +38,10 @@ nix run github:unpins/make
 
 The first invocation will offer to add the [unpins.cachix.org](https://unpins.cachix.org) substituter so most pulls come pre-built.
 
+## Man pages
+
+`make.1` is embedded in the binary — read with `unpin man make`. The same page rides in the Windows `make.exe`.
+
 ## Manual download
 
 The [Releases](https://github.com/unpins/make/releases) page has standalone binaries for manual download.
