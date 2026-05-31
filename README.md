@@ -40,7 +40,7 @@ The first invocation will offer to add the [unpins.cachix.org](https://unpins.ca
 
 ## Man pages
 
-`make.1` is embedded in the binary — read with `unpin man make`. The same page rides in the Windows `make.exe`.
+`make.1` is embedded in the binary — read with `unpin man make`.
 
 ## Manual download
 
