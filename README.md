@@ -9,18 +9,18 @@ Standalone build of [GNU make](https://www.gnu.org/software/make/).
 
 Part of the [unpins](https://unpins.org) project — native single-binary builds with no third-party runtime dependencies.
 
-## Installation
+## Usage
 
-Install with [unpin](https://github.com/unpins/unpin):
+Run the `make` program with [unpin](https://github.com/unpins/unpin):
 
 ```bash
-unpin make
+unpin make -C path target
 ```
 
-Or run without installing:
+To install it onto your PATH:
 
 ```bash
-unpin run make
+unpin install make
 ```
 
 ## Build locally
