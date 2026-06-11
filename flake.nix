@@ -1,5 +1,5 @@
 {
-  description = "Standalone build of GNU make";
+  description = "GNU make as a single self-contained binary";
 
   nixConfig = {
     extra-substituters = [ "https://unpins.cachix.org" ];
