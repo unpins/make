@@ -18,6 +18,13 @@
       inherit self;
       name = "make";
       pkgsAttr = "gnumake";
+
+      # Build via the unpin-llvm engine + emit a bitcode multicall module.
+      engine = "unpin-llvm";
+      multicall = {
+        programs = [{ name = "make"; }];
+      };
+
       build = pkgs: pkgs.pkgsStatic.gnumake;
       # Mingw quirk: src/job.c:378 calls `O (fatal, NILF, error_string)` (a
       # fatal-error macro whose argument is a *runtime* string), which trips
