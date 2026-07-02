@@ -45,3 +45,10 @@ The first invocation will offer to add the [unpins.cachix.org](https://unpins.ca
 ## Manual download
 
 The [Releases](https://github.com/unpins/make/releases) page has standalone binaries for manual download.
+
+## Build notes
+
+- **Platforms:** Linux, macOS, Windows.
+- **Windows:** a single static `make.exe` cross-compiled with mingw-w64. One Windows-only source call (`src/job.c`, Windows batch-file creation) trips `-Werror=format-security`; it's demoted to a warning — the argument is `map_windows32_error_to_string`'s output, not attacker input.
+- **Man pages:** `make.1` is embedded; read with `unpin man make`.
+- **Tests:** GNU make's Perl regression suite isn't wired — ~15 of its tests (across shell/environment-sensitive categories such as `functions/shell`) fail under static-musl in the build sandbox. The release smoke test covers the core build.
