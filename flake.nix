@@ -17,6 +17,8 @@
     unpins-lib.lib.mkStandaloneFlake {
       inherit self;
       name = "make";
+      smoke = [ "--version" ];
+      smokePattern = "^GNU Make [0-9]+\\.[0-9]+";
       pkgsAttr = "gnumake";
 
       # Build via the unpin-llvm engine + emit a bitcode multicall module.
