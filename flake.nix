@@ -25,6 +25,13 @@
       engine = "unpin-llvm";
       multicall = {
         programs = [{ name = "make"; }];
+        # Configured with prefix=$out, make bakes that prefix's `include` and
+        # `lib` into its default `.INCLUDE_DIRS` and library search path. Both
+        # are dead in the shipped binary (the base installs neither, and the
+        # directory does not exist on a user's machine); the standard
+        # /usr/include, /usr/local/include entries are unaffected. Nix still
+        # counts them as runtime refs and drags the base build behind them.
+        removeReferences = [ "gnumake-static" "gnumake-x86_64-w64-mingw32" ];
       };
 
       build = pkgs: pkgs.pkgsStatic.gnumake;
