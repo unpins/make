@@ -24,6 +24,8 @@
       # Build via the unpin-llvm engine + emit a bitcode multicall module.
       engine = "unpin-llvm";
       multicall = {
+        # The `.exe` on the engine too, not the nixpkgs mingw-gcc cross.
+        windows = true;
         programs = [{ name = "make"; }];
         # Configured with prefix=$out, make bakes that prefix's `include` and
         # `lib` into its default `.INCLUDE_DIRS` and library search path. Both
